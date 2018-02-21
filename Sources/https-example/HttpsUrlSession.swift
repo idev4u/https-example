@@ -17,8 +17,8 @@ class HttpsURLSession: URLSession, URLSessionDelegate {
 //        let url = URL(string: "https://localhost:10443/")
 //        var responseData = Data()
         let request = URLRequest.init(url: url!)
-        let configuration = URLSessionConfiguration.default
-        let queue = OperationQueue.main
+//        let configuration = URLSessionConfiguration.default
+//        let queue = OperationQueue.main
 //        let session = URLSession(configuration: configuration, delegate: self, delegateQueue:queue)
         let session = URLSession.shared
         let runQueue = DispatchQueue.global()
@@ -58,11 +58,10 @@ class HttpsURLSession: URLSession, URLSessionDelegate {
             if let error = error {
                 print(error.localizedDescription)
                 
-            } else if let responseData = data,
-                let response = response as? HTTPURLResponse,
-                response.statusCode == 200 {
+            } else if let responseData = data, let response = response as? HTTPURLResponse, response.statusCode == 200 {
+                print("ok")
                 print(response.debugDescription)
-                print(responseData.debugDescription)
+                print("message from Server: \(String(data: responseData, encoding: String.Encoding.utf8) as String! as Any)")
                 
             }
             
